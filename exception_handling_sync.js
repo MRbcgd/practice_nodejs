@@ -1,4 +1,4 @@
-//비동기성 예외처리
+//동기성 예외처리
 var fs=require('fs')
 
 console.log('--readFileSync--')//동기성 -> 순서대로
