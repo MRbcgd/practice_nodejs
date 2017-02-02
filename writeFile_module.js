@@ -12,6 +12,6 @@ console.log(3)
 
 console.log('--writeFileSync--')//동기성 -> 순서대로
 console.log(1)
-fs.writeFileSync('textfile.txt',data,'utf8')
+fs.writeFileSync('textfile2.txt',data,'utf8')
 console.log('writeFileSync Completed!')
 console.log('writeFileSync : 2')
