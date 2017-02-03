@@ -16,4 +16,4 @@ var test=function(){
   })
 }
 
-setTimeout(test,1000)
+setTimeout(test,10000)
