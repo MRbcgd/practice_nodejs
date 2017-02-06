@@ -1,4 +1,4 @@
-//connect-multiparty 미들웨어,enctype를 multipart/form-data로 보낼때 사용
+// 파일업로드시 파일명 수정 및 파일찾기
 var fs=require('fs')
 var multipart=require('connect-multiparty')//connect-multiparty 미들웨어
 var express=require('express')
@@ -16,10 +16,33 @@ app.get('/',function(reqeust,response){
   })
 })
 app.post('/',function(request,response){
-  console.log(request.body)
-  console.log(request.files)//파일정보 출력
+  var imageFile=request.files.image
 
-  response.redirect('/')
+  if(imageFile){
+    var name=imageFile.name
+    var path=imageFile.path
+    var type=imageFile.type
+
+//파일 업로드시 이름 최신화
+    if(type.indexOf('image') != -1){//indexOf는 해당 글이 없을시 -1을 출력
+      var outputPath=__dirname + '/multipart/' + Date.now() + '_' + name
+      fs.rename(path,outputPath,function(error){//파일명 수정후 전송
+        if(error){
+          return console.log(error)
+        }
+        response.redirect('/')
+      })
+    } else{
+      fs.unlink(path, function(error){//만약 파일 type이 image가 아니라면 에러 출력
+        if(error){
+          return console.log(error)
+        }
+        response.sendStatus(400)
+      })
+    }
+  } else{
+    response.sendStatus(404)
+  }
 })
 
 
