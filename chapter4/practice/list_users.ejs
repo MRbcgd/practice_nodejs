@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>List Page -Users</title>
+  </head>
+  <body>
+    <h5><a href='/'>HOME</a></h5>
+    <h1>List Page -Users</h1>
+    <a href="/insert_user">INSERT USER</a>
+    <hr>
+
+    <form method="post">
+      <fieldset>
+        <legend>USERS DATA</legend>
+        <table width="100%" border="1">
+          <tr>
+            <th>Name</th>
+            <th>DELETE</th>
+          </tr>
+          <% data.forEach(function(item,index){ %>
+          <tr>
+            <th><a href="/list_products/<%= item.id %>"><%= item.name %></a></th>
+            <th><a href="/delete_user/<%= item.id %>">DELETE</a></th>
+          </tr>
+          <% }) %>
+        </table>
+      </fieldset>
+    </form>
+  </body>
+</html>

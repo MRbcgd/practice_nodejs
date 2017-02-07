@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>List Page -Purchase</title>
+  </head>
+  <body>
+    <h5><a href='/'>HOME</a></h5>
+    <h1>List Page -Purchase</h1>
+    <hr>
+
+    <form method="post">
+      <fieldset>
+        <legend>PURCHASE DATA</legend>
+        <table width="100%" border="1">
+          <tr>
+            <th>UserID</th>
+            <th>Products_Name</th>
+            <th>Date</th>
+          </tr>
+          <% data.forEach(function(item,index){ %>
+          <tr>
+            <th><%= item.users_id%></th>
+            <th><%= item.name%></th>
+            <th><%= item.purchase_date%></th>
+          </tr>
+          <% }) %>
+        </table>
+      </fieldset>
+    </form>
+  </body>
+</html>
