@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div
+    ul
+      each comment in comments
+        li #{comment.description}
+          a(href='/#{comment.id}') comment
+  block cmtORcmt2cmt
+    legend Comments
+    hr
+    form(action='/' method='post')
+      p
+        textarea(name='description', rows='8', cols='80')
+      p
+        input(type='submit')

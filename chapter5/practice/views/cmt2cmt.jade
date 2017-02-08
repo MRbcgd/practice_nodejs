@@ -1,0 +1,14 @@
+extends index
+
+block cmtORcmt2cmt
+  legend Comments To Comments
+  hr
+  div
+    ul
+      each cmt2cmt in cmt2cmts
+        li #{cmt2cmt.description}
+  form(action='/#{root_comment_id}' method='post')
+    p
+      textarea(name='description', rows='8', cols='80')
+    p
+      input(type='submit')
