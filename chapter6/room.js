@@ -25,8 +25,16 @@ io.sockets.on('connection',function(socket){//connection 이벤트를 설정
     socket.join(data)
   })
   socket.on('message',function(data){
-    console.log(socket.rooms)
+    console.log(socket.rooms,'room')
 
     io.sockets.emit('message',data)//smart 이벤트 호출
   })
+})
+
+io.clients(function(error,clients){//clinet 정보 출력 이벤트 실행할떄 넣어서 실행
+  if(error){
+    throw error
+  }
+
+  console.log(clients,'clients')//클라이언트의 id와 접속중인 방 출력
 })
