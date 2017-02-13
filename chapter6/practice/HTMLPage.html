@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CHAT SERVICE</title>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      $(document).ready(function(){
+        var socket=io.connect()
+
+        socket.on('message',function(data){
+          var output=''
+          output+='<li>'
+          output+='<h3>'+data.username+'</h3>'
+          output+='<h3>'+data.message+'</h3>'
+          output+='<h3>'+data.date+'</h3>'
+          output+='</li>'
+
+          $(output).prependTo('#content')
+        })
+
+        $('button').click(function(){
+          socket.emit('message',{
+            username : $('#username').val(),
+            message : $('#message').val(),
+            date : new Date().toUTCString()
+          })
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <legend>username : </legend>
+    <input type="text" id="username" name="" value="">
+
+    <legend>message : </legend>
+    <input type="text" id="message" name="" value="">
+    <button type="button" name="button">Button</button>
+    <ul id="content">
+
+    </ul>
+  </body>
+</html>

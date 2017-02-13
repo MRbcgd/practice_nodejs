@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      $(document).ready(function(){
+        var socket=io.connect()
+
+        var data=prompt('ROOM NUMBER ')
+
+        socket.emit('join',data)
+        socket.on('message',function(data){
+          var output='<p>'+data+'</p>'
+
+
+          $(output).prependTo('#content')
+        })
+
+        $('button').click(function(){
+          socket.emit('message','test')
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <button type="button" name="button">Click</button>
+    <ul id="content">
+
+    </ul>
+  </body>
+</html>
